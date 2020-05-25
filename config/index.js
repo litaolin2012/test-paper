@@ -10,7 +10,7 @@ const host = local();
  * proxy webpack代理
  */
 const config = {
-  publicPath: '/vue-template/',
+  publicPath: '/test-paper/',
   host: host || 'http://localhost',
   prot: 8080,
   proxyTarget: 'https://test.com'
