@@ -1,28 +1,19 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div id="app" v-wechat-title="`${config.APP_NAME}${config.DEPLOY_TYPE ? config.ROLE_NAME[config.DEPLOY_TYPE] : ''}`">
+    <router-view/>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App'
-  // components: {
-  //   HelloWorld
-  // }
-};
+  export default {
+    name: 'App',
+    computed: {
+      config() {
+        return this.$store.state.config;
+      } // 初始化配置对象
+    }
+  };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background: url('~assets/home-bg.png');
-  background-size: 100% 100%;
-}
+<style lang="scss" scoped>
 </style>

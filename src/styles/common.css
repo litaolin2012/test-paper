@@ -1,0 +1,39 @@
+/* 重写element-ui样式 */
+.search-form .el-form-item .el-form-item__content > .el-input {
+  width: calc(100% + 15px);
+}
+
+.search-form .el-form-item.date-editor .el-form-item__content {
+  width: calc(100% - 80px);
+}
+
+.search-form .el-form-item.date-editor .el-form-item__content > .el-date-editor {
+  width: calc(100% - 15px);
+}
+
+.search-form .el-form-item .el-form-item__content > .el-input.el-input-group--append {
+  width: calc(100% - 35px);
+}
+
+.search-form .el-form-item .el-form-item__content > .el-input.el-input-group--append {
+  width: calc(100% - 35px);
+}
+
+.search-form .el-form-item .el-form-item__content > .search-button {
+  width: calc(100% - 56px) !important;
+}
+
+.search-form .el-form-item .el-form-item__content > .search-button .el-input input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-form .el-form-item .el-form-item__content > .search-button + .el-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.search-form .el-form-item .el-form-item__content > .search-button.el-select + .el-button {
+  top: 1px;
+}

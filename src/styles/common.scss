@@ -1,0 +1,486 @@
+/*
+	该scss文件中主要用于清除默认样式，指定基础样式，例如font-family、背景之类的
+*/
+@import "./config";
+
+*, :after, :before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+body, html {
+  min-width: $minWidth;
+  min-height: 100%;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+  font-family: 'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
+  background-color: $backgroundColor;
+}
+
+article,
+section,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+dl,
+dd,
+dt,
+span,
+samp,
+i,
+b,
+strong,
+a {
+  font-weight: normal;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  transition: color .3s, background-color .3s;
+
+  &:link, &:visited, &:hover, &:active {
+    text-decoration: none !important;
+  }
+
+  &:hover {
+    color: $hoverColor;
+  }
+}
+
+textarea {
+  font-size: 14px;
+  resize: none !important;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  outline: none;
+  margin: 0 auto;
+  border: none;
+}
+
+.w-e-text-container {
+  img {
+    width: auto;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+  height: 0;
+}
+
+.line-feed {
+  text-align: left;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.ellipsis {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.disabled {
+  cursor: auto !important;
+  pointer-events: none !important;
+
+  &.gray {
+    color: #999 !important;
+  }
+}
+
+.search-form {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ececec;
+
+  .el-form-item {
+    &.form-prepend {
+      .el-form-item__content {
+        .el-input-group__prepend {
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .el-form-item__label {
+      padding: 0 10px 0 0;
+    }
+  }
+}
+
+.tabs-list {
+  position: relative;
+  min-height: 54px;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    z-index: 1;
+    height: 2px;
+    background-color: #e4e7ed;
+  }
+}
+
+.table-content {
+  .table-operate {
+    margin-bottom: 15px;
+
+    &.table-operate-tag {
+      margin-bottom: 5px;
+
+      .el-tag {
+        margin-bottom: 10px;
+
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .table-hint {
+    color: #f56c6c;
+    margin-top: 15px;
+  }
+}
+
+.not-img {
+  width: 126px;
+  height: 100px;
+  border-radius: 6px;
+  background: url(img/not-img.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+
+.copy-info {
+  color: #409eff;
+  margin-left: 10px;
+}
+
+.hint-mobile {
+  padding-top: 0 !important;
+}
+
+/* 饿了吗样式重写 */
+.el-message {
+  top: 30% !important;
+}
+
+.el-loading-mask {
+  .el-loading-spinner {
+    .el-loading-text {
+      text-align: center;
+    }
+  }
+}
+
+.el-scrollbar {
+  height: 100%;
+
+  .scrollbar-custom {
+    overflow-x: hidden !important;
+  }
+
+  .el-scrollbar__bar {
+    &.is-vertical {
+      width: 3px;
+    }
+
+    &.is-horizontal {
+      height: 3px;
+    }
+  }
+}
+
+.el-dialog__wrapper {
+  .el-dialog {
+    .el-dialog__body {
+      padding: 30px;
+
+      .dialog-hint {
+        color: #f56c6c;
+        padding-top: 10px;
+        border-top: 1px dashed #e4e4e4;
+      }
+    }
+
+    .el-dialog__footer {
+      text-align: center;
+
+      .el-button {
+        & + .el-button {
+          margin-left: 30px;
+        }
+      }
+    }
+  }
+}
+
+.el-upload-list {
+  &.is-disabled {
+    & + .el-upload {
+      cursor: auto;
+    }
+  }
+}
+
+.el-form {
+  .el-form-item {
+    .el-input {
+      &.mobile-prepend {
+        .el-input-group__prepend {
+          width: 70px;
+          color: #333;
+          background-color: #fff;
+        }
+      }
+    }
+
+    &.form-upload {
+      height: 100px;
+      min-width: 440px;
+      overflow: hidden;
+    }
+
+    &.form-editor {
+      height: 550px;
+      .el-form-item__content {
+        .w-e-text-container {
+          height: 500px !important;
+        }
+      }
+    }
+
+    &.double-input {
+      .el-form-item__content {
+        .el-input {
+          width: 47%;
+
+          .el-input-group__append {
+            padding: 0 10px;
+          }
+
+          &:first-child {
+            margin-right: 2px;
+
+            & + div {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+
+    &.three-input {
+      .el-form-item__content {
+        .el-input {
+          float: left;
+          width: 32.5%;
+
+          .el-input-group__append {
+            padding: 0 10px;
+          }
+
+          &:first-child {
+            margin-right: 6px;
+
+            & + div {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+
+    &.form-img-code {
+      .el-input-group__append {
+        padding: 0;
+
+        > div {
+          width: 110px;
+          height: 38px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .fa {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      font-size: 16px;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .el-date-editor {
+    width: 100%;
+  }
+}
+
+.el-select {
+  display: block !important;
+}
+
+.el-checkbox-group {
+  .el-checkbox {
+    & + .el-checkbox {
+      margin-left: 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+}
+
+.el-date-editor .el-range-separator {
+  padding: 0 !important;
+}
+
+.el-date-editor--date, .el-date-editor--month, .el-date-editor--daterange {
+  width: 100% !important;
+}
+
+.el-time-range-picker {
+  .el-time-spinner {
+    .el-time-spinner__wrapper {
+      .el-scrollbar__wrap {
+        box-sizing: initial;
+      }
+    }
+  }
+}
+
+.el-button {
+  font-size: 14px;
+
+  &.query-button {
+    position: relative;
+    top: -1px;
+    height: 28px;
+    color: #fff !important;
+    border-color: $hoverColor !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    background-color: $hoverColor !important;
+
+    &:focus {
+      color: #fff !important;
+      border-color: #66b1ff !important;
+      background-color: #66b1ff !important;
+    }
+
+    &:hover {
+      color: #fff !important;
+      border-color: #66b1ff !important;
+      background-color: #66b1ff !important;
+    }
+
+    &:active {
+      color: #fff !important;
+      border-color: #3a8ee6 !important;
+      background-color: #3a8ee6 !important;
+    }
+  }
+
+  & + .el-button {
+    margin-left: 10px;
+  }
+
+  .fa {
+    margin-right: 5px;
+  }
+}
+
+.el-tabs {
+  margin-bottom: 10px;
+}
+
+.el-table {
+  font-size: 14px;
+  color: #333;
+
+  .cell, th > div {
+    text-align: center;
+    padding: 0 5px !important;
+  }
+
+  th, td {
+    padding: 7px 0 !important;
+  }
+
+  th {
+    .cell {
+      color: #3d3d3d;
+      font-weight: bold;
+    }
+  }
+
+  .el-button {
+    padding: 3px 6px;
+  }
+
+  .cell {
+    &:empty {
+      &:after {
+        content: '-';
+      }
+    }
+
+    .el-button {
+      margin: 0 5px;
+    }
+
+    a {
+      color: $hoverColor;
+      margin: 0 5px;
+    }
+  }
+}
+
+.el-pagination {
+  text-align: center;
+  margin-top: 25px;
+}

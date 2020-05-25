@@ -74,7 +74,7 @@ import { getExternalSceneDrawStatus, getExternalSceneDraw } from '@/api/base';
 import printJS from 'print-js';
 import { setTimeout } from 'timers';
 export default {
-  name: 'Login',
+  name: 'LoginCommon',
   data() {
     return {
       showBaseInfo: false,

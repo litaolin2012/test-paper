@@ -9,9 +9,10 @@ const os = require('os');
 
 module.exports = function() {
   const nifs = os.networkInterfaces({ all: true }) || []; // 获取网卡信息
-  const nifsAdress = ['以太网', '本地连接', 'en0'];
+  const nifsAdress = ['以太网 3','以太网', '本地连接', 'en0'];
   const key = nifsAdress.find(v => Object.keys(nifs).includes(v));
   const nifsC = nifs[key];
+  console.log(nifs, nifsC, 333);
   const localInfo = nifsC.find(v => v.family === 'IPv4');
   const localIp = localInfo.address || 'localhost';
   return localIp;

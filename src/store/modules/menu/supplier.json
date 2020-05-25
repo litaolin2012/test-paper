@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "看板",
+    "icon": "tachometer",
+    "href": "supplierDashboard",
+    "child": []
+  },
+  {
+    "id": 2,
+    "name": "产品管理",
+    "icon": "cubes",
+    "href": "supplierProduct",
+    "child": []
+  },
+  {
+    "id": 3,
+    "name": "基础信息",
+    "icon": "id-card",
+    "href": "supplierInfo",
+    "child": []
+  }
+]
