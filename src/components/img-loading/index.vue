@@ -1,27 +1,30 @@
 <template>
   <div class="img-loading">
-    <i v-show="!loading" class="el-icon-loading"
-       :style="{ fontSize: `${size}px`, margin: `-${size / 2}px 0 0 -${size / 2}px` }"></i>
-    <img v-show="loading" src="" ref="img" alt="loading"/>
+    <i
+v-show="!loading"
+class="el-icon-loading"
+       :style="{ fontSize: `${size}px`, margin: `-${size / 2}px 0 0 -${size / 2}px` }"
+></i>
+    <img v-show="loading" ref="img" src="" alt="loading"/>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'imgLoading',
+    name: 'ImgLoading',
     props: {
       src: {
         type: [String, Number],
-        required: true,
+        required: true
       }, // 图片地址
       size: {
         type: Number,
-        default: 50,
-      }, // loading大小
+        default: 50
+      } // loading大小
     },
     data() {
       return {
-        loading: false, // 图片加载状态
+        loading: false // 图片加载状态
       };
     },
     mounted() {
@@ -34,8 +37,8 @@
         this.$refs.img.onload = () => {
           this.loading = true;
         };
-      }, // 切换图片地址
-    },
+      } // 切换图片地址
+    }
   };
 </script>
 

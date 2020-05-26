@@ -9,29 +9,53 @@
           <p class="form-title">
             <span>请修改初始密码</span>
           </p>
-          <el-form key="amend" :model="amendData" :rules="amendRules" ref="amendRef"
-                   @keydown.enter.stop.native="!loadingServer.amend && amend()">
+          <el-form
+            key="amend"
+            ref="amendRef"
+            :model="amendData"
+            :rules="amendRules"
+            @keydown.enter.stop.native="!loadingServer.amend && amend()"
+          >
             <el-form-item prop="oldPassword">
-              <el-input v-model="amendData.oldPassword" v-focus :type="type.amendOld"
-                        :maxlength="64" autocomplete="off" placeholder="请输入原密码"></el-input>
+              <el-input
+                v-model="amendData.oldPassword"
+                v-focus
+                :type="type.amendOld"
+                :maxlength="64"
+                autocomplete="off"
+                placeholder="请输入原密码"
+              ></el-input>
               <span class="fa fa-lock"></span>
-              <password-eye v-model="type.amendOld"></password-eye>
+              <PasswordEye v-model="type.amendOld"></PasswordEye>
             </el-form-item>
             <el-form-item prop="newPassword">
-              <el-input v-model="amendData.newPassword" :type="type.amendNew" :maxlength="64"
-                        autocomplete="off" placeholder="请输入新密码"></el-input>
+              <el-input
+                v-model="amendData.newPassword"
+                :type="type.amendNew"
+                :maxlength="64"
+                autocomplete="off"
+                placeholder="请输入新密码"
+              ></el-input>
               <span class="fa fa-lock"></span>
-              <password-eye v-model="type.amendNew"></password-eye>
+              <PasswordEye v-model="type.amendNew"></PasswordEye>
             </el-form-item>
             <el-form-item prop="rPassword">
-              <el-input v-model="amendData.rPassword" :type="type.amendR" :maxlength="64"
-                        autocomplete="off" placeholder="请再次输入新密码"></el-input>
+              <el-input
+                v-model="amendData.rPassword"
+                :type="type.amendR"
+                :maxlength="64"
+                autocomplete="off"
+                placeholder="请再次输入新密码"
+              ></el-input>
               <span class="fa fa-lock"></span>
-              <password-eye v-model="type.amendR"></password-eye>
+              <PasswordEye v-model="type.amendR"></PasswordEye>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" :loading="loadingServer.amend"
-                         @click.stop="amend()">确定修改
+              <el-button
+                type="primary"
+                :loading="loadingServer.amend"
+                @click.stop="amend()"
+              >确定修改
               </el-button>
             </el-form-item>
           </el-form>
@@ -42,49 +66,92 @@
         <p class="form-title">
           <span v-text="`欢迎登录${config.APP_NAME}${config.ROLE_NAME[deployType]}`"></span>
         </p>
-        <el-form key="login" :model="formData" :rules="formRules" ref="formRef"
-                 @keydown.enter.stop.native="!loadingServer.login && login()">
+        <el-form
+          key="login"
+          ref="formRef"
+          :model="formData"
+          :rules="formRules"
+          @keydown.enter.stop.native="!loadingServer.login && login()"
+        >
           <el-form-item prop="username">
-            <el-input v-model="formData.username" v-focus :maxlength="64"
-                      autocomplete="off" placeholder="请输入用户名"></el-input>
+            <el-input
+              v-model="formData.username"
+              v-focus
+              :maxlength="64"
+              autocomplete="off"
+              placeholder="请输入用户名"
+            ></el-input>
             <span class="fa fa-user"></span>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model="formData.password" :type="type.login" :maxlength="64"
-                      autocomplete="off" placeholder="请输入密码"></el-input>
+            <el-input
+              v-model="formData.password"
+              :type="type.login"
+              :maxlength="64"
+              autocomplete="off"
+              placeholder="请输入密码"
+            ></el-input>
             <span class="fa fa-lock"></span>
-            <password-eye v-model="type.login"></password-eye>
+            <PasswordEye v-model="type.login"></PasswordEye>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" :loading="loadingServer.login"
-                       @click.stop="login()">登 录
+            <el-button
+              type="primary"
+              :loading="loadingServer.login"
+              @click.stop="login()"
+            >登 录
             </el-button>
           </el-form-item>
         </el-form>
       </div>
     </transition>
-    <el-dialog :visible.sync="dialog.verify" title="手机验证码" width="400px" top="25vh"
-               :close-on-click-modal="false" :close-on-press-escape="false"
-               custom-class="dialog-verify">
-      <el-form :model="verifyData" :rules="verifyRules" ref="verifyRef"
-               @keydown.enter.stop.native="!loadingServer.verify && verify()" class="verify-form">
+    <el-dialog
+      :visible.sync="dialog.verify"
+      title="手机验证码"
+      width="400px"
+      top="25vh"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      custom-class="dialog-verify"
+    >
+      <el-form
+        ref="verifyRef"
+        :model="verifyData"
+        :rules="verifyRules"
+        class="verify-form"
+        @keydown.enter.stop.native="!loadingServer.verify && verify()"
+      >
         <el-form-item prop="mobile">
-          <span>手机号码：{{mobile}}</span>
+          <span>手机号码：{{ mobile }}</span>
         </el-form-item>
         <el-form-item prop="imgCode" class="form-img-code">
-          <el-input v-model="verifyData.imgCode" v-focus :maxlength="4" autocomplete="off"
-                    placeholder="请输入图形验证码">
+          <el-input
+            v-model="verifyData.imgCode"
+            v-focus
+            :maxlength="4"
+            autocomplete="off"
+            placeholder="请输入图形验证码"
+          >
             <div slot="append" @click.stop="changeImg()">
-              <img-loading :src="imgPath" :size="30" ref="imgLoading"></img-loading>
+              <ImgLoading ref="imgLoading" :src="imgPath" :size="30"></ImgLoading>
             </div>
           </el-input>
         </el-form-item>
         <el-form-item prop="vcode">
-          <el-input v-model="verifyData.vcode" :maxlength="6" autocomplete="off"
-                    placeholder="请输入验证码">
-            <el-button slot="append" :loading="loadingServer.code" @click.stop="getCode()"
-                       :disabled="verifyText !== '获取验证码'" class="query-button form-button-code">
-              {{verifyText}}
+          <el-input
+            v-model="verifyData.vcode"
+            :maxlength="6"
+            autocomplete="off"
+            placeholder="请输入验证码"
+          >
+            <el-button
+              slot="append"
+              :loading="loadingServer.code"
+              :disabled="verifyText !== '获取验证码'"
+              class="query-button form-button-code"
+              @click.stop="getCode()"
+            >
+              {{ verifyText }}
             </el-button>
           </el-input>
         </el-form-item>
@@ -125,28 +192,28 @@
         }, // 密码框类型
         formData: {
           username: '',
-          password: '',
+          password: ''
         }, // 登录对象
         formRules: {
           username: [
             {
               validator: this.$verify({ text: '用户名' }),
-              trigger: 'blur',
-            },
+              trigger: 'blur'
+            }
           ],
           password: [
             {
               validator: this.$verify({
                 text: '密码',
-                minLength: 6,
+                minLength: 6
               }),
-              trigger: 'blur',
-            },
-          ],
+              trigger: 'blur'
+            }
+          ]
         }, // 登录验证对象
         dialog: {
           verify: false,
-          imgCode: false,
+          imgCode: false
         }, // 弹窗状态对象
         mobile: '', // 用户手机号
         userData: {}, // 登录后用户对象
@@ -154,42 +221,42 @@
         verifyText: '获取验证码', // 获取验证码按钮内容
         verifyData: {
           imgCode: '',
-          vcode: '',
+          vcode: ''
         }, // 验证码对象
         verifyRules: {
           imgCode: [
             {
               validator: this.$verify({
                 text: '图形验证码',
-                minLength: 4,
+                minLength: 4
               }),
-              trigger: 'blur',
-            },
+              trigger: 'blur'
+            }
           ],
           vcode: [
             {
               validator: this.$verify({
                 text: '验证码',
-                minLength: 6,
+                minLength: 6
               }),
-              trigger: 'blur',
-            },
-          ],
+              trigger: 'blur'
+            }
+          ]
         }, // 验证码验证对象
         amendData: {
           oldPassword: '',
           newPassword: '',
-          rPassword: '',
+          rPassword: ''
         }, // 修改初始密码对象
         amendRules: {
           oldPassword: [
             {
               validator: this.$verify({
                 text: '原密码',
-                minLength: 6,
+                minLength: 6
               }),
-              trigger: 'blur',
-            },
+              trigger: 'blur'
+            }
           ],
           newPassword: [
             {
@@ -200,10 +267,10 @@
                   if (this.amendData.rPassword) {
                     this.$refs.amendRef.validateField('rPassword');
                   }
-                },
+                }
               }),
-              trigger: 'blur',
-            },
+              trigger: 'blur'
+            }
           ],
           rPassword: [
             {
@@ -215,12 +282,12 @@
                     return callback(new Error('确认密码与新密码不一致'));
                   }
                   return true;
-                },
+                }
               }),
-              trigger: 'blur',
-            },
-          ],
-        }, // 修改初始密码验证对象
+              trigger: 'blur'
+            }
+          ]
+        } // 修改初始密码验证对象
       };
     },
     computed: {
@@ -238,7 +305,7 @@
       }, // 用户对象
       loadingServer() {
         return this.$store.state.loadingServer;
-      }, // 按钮级loading对象
+      } // 按钮级loading对象
     },
     beforeRouteEnter(to, from, next) {
       const user = local.getItem(USER_LOCAL_NAME);
@@ -268,12 +335,12 @@
             this.$axios.post('login', {
               username: `${username}`,
               password,
-              module: Number(this.config.DEPLOY_TYPE) + 10,
+              module: Number(this.config.DEPLOY_TYPE) + 10
             })
               .then((response) => {
                 ({
                   data: this.userData,
-                  data: { mobile: this.mobile },
+                  data: { mobile: this.mobile }
                 } = response);
                 this.$store.dispatch(USER_SET, this.userData)
                   .then(() => {
@@ -309,7 +376,7 @@
                 onClose: () => {
                   this.setCodeTime();
                   this.$store.dispatch(LOADING_CHANGE, { code: false });
-                },
+                }
               });
             });
         } else {
@@ -351,7 +418,7 @@
                             }
                           });
                       });
-                  },
+                  }
                 });
               });
           }

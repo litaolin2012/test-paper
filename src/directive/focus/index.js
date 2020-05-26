@@ -8,5 +8,5 @@ export default {
     if (value !== oldValue) {
       el.querySelector('input:not([readonly]),textarea:not([readonly]').focus();
     }
-  },
+  }
 };

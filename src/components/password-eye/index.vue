@@ -1,15 +1,18 @@
 <template>
-  <span class="password-eye fa" :class="{ 'fa-eye': checkType, 'fa-eye-slash': !checkType }"
-        @click.stop="changeType()"></span>
+  <span
+    class="password-eye fa"
+    :class="{ 'fa-eye': checkType, 'fa-eye-slash': !checkType }"
+    @click.stop="changeType()"
+  ></span>
 </template>
 
 <script>
   export default {
-    name: 'passwordEye',
+    name: 'PasswordEye',
     props: {
       value: {
-        required: true,
-      }, // 密码框类型
+        required: true
+      } // 密码框类型
     },
     data() {
       return {};
@@ -17,13 +20,13 @@
     computed: {
       checkType() {
         return this.value === 'text';
-      }, // 密码框类型是否为text
+      } // 密码框类型是否为text
     },
     methods: {
       changeType() {
         this.$emit('input', this.checkType ? 'password' : 'text');
-      }, // 切换密码框输入类型
-    },
+      } // 切换密码框输入类型
+    }
   };
 </script>
 
