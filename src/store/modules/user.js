@@ -1,5 +1,5 @@
 import local from './local';
-import { MENU_CLEAR } from './menu';
+// import { MENU_CLEAR } from './menu';
 
 export const USER_GET = 'USER_GET';
 export const USER_SET = 'USER_SET';
@@ -44,7 +44,7 @@ export default {
         }
         await Promise.all([this._vm.$axios.get('common/users/current'), this._vm.$axios.get('common/permissions/owns')])
           .then((response) => {
-            dispatch(MENU_CLEAR);
+            // dispatch(MENU_CLEAR);
             dispatch(USER_SET, Object.assign({ permissions: response[1].data }, response[0].data));
           });
       }
@@ -62,7 +62,7 @@ export default {
     async [USER_LOGOUT]({ dispatch }) {
       await this._vm.$axios.post('logout', { errorBack: true })
         .then(() => {
-          dispatch(MENU_CLEAR);
+          // dispatch(MENU_CLEAR);
           dispatch(USER_CLEAR);
           window.location.href = `${this.state.config.WEB_URL}login`;
         });
