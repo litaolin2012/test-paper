@@ -6,8 +6,8 @@
           :router="true"
           :default-active="active"
           :unique-opened="true"
-          background-color="#0071fe"
-          text-color="#ffffff"
+          background-color="#304156"
+          text-color="rgb(191, 203, 217)"
         >
           <template v-for="(first, fIndex) in menu">
             <el-submenu v-if="first.child[0]" :key="fIndex" :index="first.href">
@@ -37,7 +37,7 @@
                   :index="second.href"
                   :route="{ name: second.href }"
                 >
-                  <i class="fa" :class="[`fa-${second.icon}`]"></i>
+                  <!-- <i class="fa" :class="[`fa-${second.icon}`]"></i> -->
                   <span slot="title" v-text="second.name"></span>
                 </el-menu-item>
               </template>
@@ -280,7 +280,7 @@
         .el-scrollbar__view > .el-menu {
           > .el-submenu {
             > .el-submenu__title {
-              font-size: 16px;
+              font-size: 14px;
             }
 
             > .el-menu {

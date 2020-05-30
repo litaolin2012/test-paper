@@ -68,7 +68,11 @@ export default {
         .then(() => {
           // dispatch(MENU_CLEAR);
           dispatch(USER_CLEAR);
-          window.location.href = `${this.state.config.WEB_URL}login`;
+          if (process.env.NODE_ENV === 'development') {
+            window.location.href = `${this.state.config.WEB_URL}test-paper/#/login`;
+          } else {
+            window.location.href = `${this.state.config.WEB_URL}login`;
+          }
         });
     } // 退出
   }

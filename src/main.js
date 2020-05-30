@@ -2,7 +2,6 @@ import 'babel-polyfill';
 import Vue from 'vue';
 import VueWeChatTitle from 'vue-wechat-title';
 import 'font-awesome/scss/font-awesome.scss';
-import 'element-ui/lib/theme-chalk/base.css';
 import Vuex from 'vuex';
 import App from './App.vue';
 import router from './router';
@@ -12,9 +11,11 @@ import verify from './utils/verify';
 import axios from './utils/axios';
 import ElementUI from 'element-ui';
 import './permission';
-Vue.use(ElementUI);
-Vue.use(Vuex);
 import './styles/index.scss';
+Vue.use(ElementUI, {
+  size: 'small' // set element-ui default size
+});
+Vue.use(Vuex);
 
 // 加载VueWechatTitle插件
 Vue.use(VueWeChatTitle);
