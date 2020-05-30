@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import Vue from 'vue';
 import VueWeChatTitle from 'vue-wechat-title';
 import 'font-awesome/scss/font-awesome.scss';
+import 'element-ui/lib/theme-chalk/base.css';
 import Vuex from 'vuex';
 import App from './App.vue';
 import router from './router';

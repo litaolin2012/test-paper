@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import { DEPLOY_TYPES } from '../store/modules/config';
-
 Vue.use(Router);
 const { admins } = DEPLOY_TYPES;
+import admin from './modules/admin';
+export const adminRouter = admin;
 export const commonRoutes = [
   {
     path: '',
@@ -18,7 +19,8 @@ export const commonRoutes = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/common/login/index')
-  }
+  },
+  ...admin
 ];
 export default new Router({
   mode: 'hash',

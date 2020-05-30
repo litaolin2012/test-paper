@@ -52,6 +52,10 @@ export default {
     async [USER_SET]({ commit, dispatch }, user) {
       if (user instanceof Object) {
         commit(USER_SET, user);
+        if (!user.type) {
+          const roles = 'admin';
+          commit('SET_ROLES', [roles]);
+        }
       } else {
         await dispatch(USER_GET);
       }

@@ -5,15 +5,22 @@ import store from './store';
 
 router.beforeEach((to, from, next) => {
   if (store.getters.token) {
-    if (to.path === '/login') {
-      next();
+    if (!store.getters.menu.length) {
+      store.dispatch('CONFIG_GET');
+      store.dispatch('GetMenuList').then(() => {
+        next({ name: 'user' });
+      });
     } else {
-      if (!store.getters.roles.length) {
-        store.dispatch('GetMenuList');
-      }
+      next();
+      // console.log()
       // next();
     }
   } else {
-    next({ name: 'login' });
+    store.dispatch('CONFIG_GET');
+    if (to.path === '/login') {
+      next();
+    } else {
+      next('/login');
+    }
   }
 });

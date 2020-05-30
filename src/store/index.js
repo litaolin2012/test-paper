@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import config from './modules/config';
 import user from './modules/user';
+import menu from './modules/menu';
 import loadingServer from './modules/loading-server';
 import getters from './getters';
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
   modules: {
     config,
     user,
+    menu,
     loadingServer
   }
 });

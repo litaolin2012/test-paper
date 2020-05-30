@@ -34,7 +34,7 @@
                 <el-menu-item
                   v-else
                   :key="sIndex"
-:index="second.href"
+                  :index="second.href"
                   :route="{ name: second.href }"
                 >
                   <i class="fa" :class="[`fa-${second.icon}`]"></i>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-  import { USER_LOGOUT } from '../../store/user';
+  import { USER_LOGOUT } from '../../store/modules/user';
   import Artwork from '../artwork/index.vue';
 
   export default {
@@ -189,7 +189,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../scss/config";
+  @import "../../styles/config";
 
   .layout {
     position: relative;
@@ -207,7 +207,7 @@
 
         .fa {
           color: #fff !important;
-          margin-right: 5px;
+          margin-right: 15px;
         }
       }
     }
@@ -265,7 +265,7 @@
 </style>
 
 <style lang="scss">
-  @import "../../scss/config";
+  @import "../../styles/config";
 
   .layout aside {
     .el-scrollbar {
@@ -335,7 +335,7 @@
           .fa {
             display: inline-block;
             width: 20px;
-            font-size: 20px;
+            font-size: 14px;
             text-align: center;
           }
         }

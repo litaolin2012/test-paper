@@ -317,7 +317,6 @@
     },
     created() {
       this.$store.dispatch(LOADING_SET, { names: ['login', 'code', 'verify', 'amend'] });
-      this.$store.dispatch('CONFIG_GET');
     },
     mounted() {
       if (this.deployType === this.deployTypes.admins) {
@@ -342,6 +341,7 @@
                   data: this.userData,
                   data: { mobile: this.mobile }
                 } = response);
+                console.log(response, 3333);
                 this.$store.dispatch(USER_SET, this.userData)
                   .then(() => {
                     this.$store.dispatch(USER_GET, false)
