@@ -12,6 +12,9 @@ import axios from './utils/axios';
 import ElementUI from 'element-ui';
 import './permission';
 import './styles/index.scss';
+
+import formClear from './utils/form-clear';
+
 Vue.use(ElementUI, {
   size: 'small' // set element-ui default size
 });
@@ -26,6 +29,7 @@ Object.entries(directive).map(([key, value]) => Vue.directive(key, value));
 Vue.config.productionTip = false;
 Vue.prototype.$verify = verify;
 Vue.prototype.$axios = axios;
+Vue.prototype.$formClear = formClear;
 
 new Vue({
   router,

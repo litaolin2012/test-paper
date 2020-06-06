@@ -288,22 +288,22 @@
                 font-size: 14px;
 
                 .fa {
-                  width: 16px;
-                  font-size: 16px;
+                  width: 14px;
+                  font-size: 14px;
                 }
               }
 
               .el-submenu__title {
                 .fa {
-                  width: 16px;
-                  font-size: 16px;
+                  width: 14px;
+                  font-size: 14px;
                 }
               }
             }
           }
 
           > .el-submenu, > .el-menu-item {
-            font-size: 16px;
+            font-size: 14px;
 
             .el-submenu__title {
               height: 50px;
