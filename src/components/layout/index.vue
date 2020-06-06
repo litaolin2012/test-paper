@@ -123,10 +123,10 @@
       logout() {
         this.$confirm('您确定要退出吗？', '提示', { type: 'warning' })
           .then(() => {
-            this.$loading({
-              text: '加载中...',
-              background: 'rgba(255,255,255,.4)'
-            });
+            // this.$loading({
+            //   text: '加载中...',
+            //   background: 'rgba(255,255,255,.4)'
+            // });
             this.$store.dispatch(USER_LOGOUT);
           });
       }, // 退出
