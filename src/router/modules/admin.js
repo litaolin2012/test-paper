@@ -79,5 +79,59 @@ export default [
         component: () => import('@/views/admin/dictionary/index.vue')
       }
     ]
+  },
+  // 题目标签管理
+  {
+    path: 'question-tag',
+    meta: {
+      title: '题目标签管理',
+      whiteList: [admins],
+      roles: ['question-tag']
+    },
+    component: layout,
+    children: [
+      {
+        path: '',
+        name: 'question-tag',
+        meta: {
+          title: '题目分类管理',
+          whiteList: [admins],
+          roles: ['question-tag']
+        },
+        component: () => import('@/views/admin/questionTag/index.vue')
+      }
+    ]
+  },
+  // 题目管理
+  {
+    path: 'question-manage',
+    meta: {
+      title: '题目管理',
+      whiteList: [admins],
+      roles: ['question-manage']
+    },
+    component: layout,
+    children: [
+      {
+        path: '',
+        name: 'question-manage',
+        meta: {
+          title: '题目分类管理',
+          whiteList: [admins],
+          roles: ['question-manage']
+        },
+        component: () => import('@/views/admin/questionManage/index.vue')
+      },
+      {
+        path: 'add-question',
+        name: 'addQuestion',
+        meta: {
+          title: '新增题目',
+          whiteList: [admins],
+          roles: ['add-question']
+        },
+        component: () => import('@/views/admin/questionManage/add-question.vue')
+      }
+    ]
   }
 ];

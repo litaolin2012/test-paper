@@ -19,7 +19,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
   if (process.env && process.env.NODE_ENV === 'development') {
-    window.UEDITOR_HOME_URL = '/static/UE/'; // 开发
+    window.UEDITOR_HOME_URL = '/UE/'; // 开发
   } else {
     window.UEDITOR_HOME_URL = '/etms/static/UE/'; // 生产
   }

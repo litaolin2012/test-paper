@@ -6,13 +6,13 @@
 <script>
 /* global UE */
 // UE编辑器
-import 'public/UE/ueditor.config.js';
-import 'public/UE/ueditor.all.js';
-import 'public/UE/lang/zh-cn/zh-cn.js';
-import 'public/UE/ueditor.parse.min.js';
-import 'public/UE/kityformula-plugin/addKityFormulaDialog.js';
-import 'public/UE/kityformula-plugin/getKfContent.js';
-import 'public/UE/kityformula-plugin/defaultFilterFix.js';
+import '../../../public/UE/ueditor.config.js';
+import '../../../public/UE/ueditor.all.js';
+import '../../../public/UE/lang/zh-cn/zh-cn.js';
+import '../../../public/UE/ueditor.parse.min.js';
+import '../../../public/UE/kityformula-plugin/addKityFormulaDialog.js';
+import '../../../public/UE/kityformula-plugin/getKfContent.js';
+import '../../../public/UE/kityformula-plugin/defaultFilterFix.js';
 export default {
   name: 'UE',
   props: {

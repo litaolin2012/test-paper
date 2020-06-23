@@ -23,7 +23,7 @@ const CONFIG_DEV = {
   DEPLOY_URL: ['localhost', 'localhost', 'localhost'], // 部署地址（0：后台，1：供应商，2：创客）
   ROLE_NAME: ['管理后台', '供应商中心', '创客中心'], // 角色名（0：后台，1：供应商，2：创客）
   DEPLOY_TYPE: DEPLOY_TYPES.admins, // 部署类型
-  RESOURCE_URL: 'http://106.53.100.47:8092/'// 后台地址
+  RESOURCE_URL: 'http://192.168.2.48:8090/'// 后台地址 http://106.53.100.47:8092
 };
 
 export default {
