@@ -21,7 +21,7 @@
       <el-row>
         <el-col :span="23">
           <el-form-item prop="category2" label="二级分类：">
-            <el-select v-model="formData.category2" filterable placeholder="请选择二级分类">
+            <el-select v-model="formData.category2" filterable placeholder="请选择二级分类" @change="changeCategory2">
               <el-option v-for="item in category2Data" :key="item.id" :value="item.id" :label="item.name">
               </el-option>
             </el-select>
@@ -63,8 +63,22 @@
       </el-row>
       <el-row>
         <el-col :span="23">
-          <el-form-item label="完整解析：" required>
-            <UE :config="config" :default-msg="formData.resolve"></UE>
+          <div class="fr">
+            <el-button class="pull-right" type="primary" @click="addItems()">新增选项</el-button>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="23">
+          <el-form-item label="部分解析：">
+            <UE id="partResolve" ref="partResolve" :config="config" :default-msg="formData.resolve"></UE>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="23">
+          <el-form-item label="完整解析：">
+            <UE id="resolve" ref="resolve" :config="config" :default-msg="formData.resolve"></UE>
           </el-form-item>
         </el-col>
       </el-row>
@@ -85,6 +99,45 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="解锁价格：" prop="price">
+            <el-input v-model="formData.price" type="number" :max="10000000" :min="0" placeholder="请输入解锁价格"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :xs="24 ">
+          <el-form-item label="标签：" prop="label">
+            <el-tag
+              v-for="(tag,index) in tags"
+              :key="index"
+              :closable="true"
+              :close-transition="false"
+              style="margin:0 10px;"
+              @close="handleClose(tag)"
+            >
+              {{ tag }}
+            </el-tag>
+            <div v-show="inputVisible" style="display:inline-block;width:200px;">
+              <el-select
+                ref="saveTagInput"
+                v-model="tags"
+                multiple
+                class="input-new-tag"
+                size="small"
+                placeholder="请选择标签"
+                @change="handleInputConfirm"
+                @blur="handleInputConfirm"
+              >
+                <el-option v-for="item in tagArray" :key="item.id" :value="item.name" :label="item.name">
+                </el-option>
+              </el-select>
+            </div>
+            <el-button v-show="!inputVisible" class="button-new-tag" size="small" @click="showInput"><i class="el-icon-plus"></i></el-button>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
   </div>
 </template>
@@ -100,6 +153,8 @@
         loading: false, // 加载状态
         category1Data: [], // 一级分类
         category2Data: [], // 二级分类
+        tagArray: [], // 标签数组
+        tags: [], // 选择标签
         formData: {
           id: '',
           name: '',
@@ -108,10 +163,13 @@
           level: '',
           title: '',
           answer: '',
+          partResolve: '',
           resolve: '',
           remark: '',
-          topFlag: ''
+          topFlag: '',
+          label: ''
         }, // 回复对象
+        inputVisible: false,
         formRules: {
           name: [
             {
@@ -123,7 +181,13 @@
           category1: [{ required: true, message: '请选择一级分类', trigger: 'change' }],
           category2: [{ required: true, message: '请选择二级分类', trigger: 'change' }],
           level: [{ required: true, message: '请选择难度', trigger: 'change' }],
-          topFlag: [{ required: true, message: '请选择是否置顶', trigger: 'change' }]
+          topFlag: [{ required: true, message: '请选择是否置顶', trigger: 'change' }],
+          price: [
+            {
+              required: true,
+              trigger: 'blur'
+            }
+          ]
         }, // 回复验证对象
         config: {
           initialFrameWidth: null,
@@ -173,6 +237,53 @@
           });
         }
       },
+
+      // 二级分类change事件
+      changeCategory2() {
+        this.getTags();
+      },
+
+      // 根据分类查询标签
+      getTags() {
+        if (this.formData.category1 && this.formData.category2) {
+          const data = {
+            category1: this.formData.category1,
+            category2: this.formData.category2
+          };
+          this.$axios.get(`admin/questionLabels/listByCategory`, data).then(response => {
+            this.tagArray = response.data;
+          });
+        } else {
+          this.tagArray = [];
+        }
+      },
+      // 关闭标签
+      handleClose(tag) { // 标签
+        this.tags.splice(this.tags.indexOf(tag), 1);
+      },
+
+      // 选择标签事件
+      handleInputConfirm() {
+        if (Array.isArray(this.tags) && this.tags.length > 9) {
+          this.$message({
+            message: '最多只能添加10个标签',
+            type: 'warning'
+          });
+          this.inputVisible = false;
+          this.tags = [];
+          return;
+        }
+        console.log(this.tags, 333);
+        this.inputVisible = false;
+      },
+
+      showInput() {
+        this.inputVisible = true;
+        this.$nextTick(_ => {
+          this.$refs.saveTagInput.focus();
+        });
+      },
+
       // 删除题目选项
       deleteItem(index) {
         if (this.questionItems.length < 3) {
@@ -183,6 +294,23 @@
           return;
         } else {
           this.questionItems.splice(index, 1);
+        }
+      },
+
+      // 新增选项
+      addItems() {
+        if (this.questionItems.length > 7) {
+          this.$message({
+            message: '不能多于八个选项',
+            type: 'warning'
+          });
+          return;
+        } else {
+          this.questionItems.push({
+            code: '',
+            correct: 0,
+            title: ''
+          });
         }
       },
       save() {
@@ -214,5 +342,8 @@
 .add-question {
   width: 1000px;
   margin: 0 auto;
+  .pull-right {
+    margin-bottom: 24px;
+  }
 }
 </style>
