@@ -487,3 +487,22 @@ img {
 .el-button--small {
   font-size: 12px;
 }
+
+.html-div {
+  img {
+    height: 30px;
+    max-height: 24px;
+    width: auto;
+    vertical-align: middle;
+  } 
+}
+
+.marginTop24 {
+  margin-top: 24px;
+}
+
+.text-overflow-hidden {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

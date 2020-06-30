@@ -341,7 +341,6 @@
                   data: this.userData,
                   data: { mobile: this.mobile }
                 } = response);
-                console.log(response, 3333);
                 this.$store.dispatch(USER_SET, this.userData)
                   .then(() => {
                     this.$store.dispatch(USER_GET, false)

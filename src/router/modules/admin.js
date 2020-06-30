@@ -103,10 +103,11 @@ export default [
     ]
   },
   // 题目管理
+  // 题目信息
   {
     path: 'question-manage',
     meta: {
-      title: '题目管理',
+      title: '题目信息',
       whiteList: [admins],
       roles: ['question-manage']
     },
@@ -116,7 +117,7 @@ export default [
         path: '',
         name: 'question-manage',
         meta: {
-          title: '题目分类管理',
+          title: '题目信息',
           whiteList: [admins],
           roles: ['question-manage']
         },
@@ -131,6 +132,58 @@ export default [
           roles: ['add-question']
         },
         component: () => import('@/views/admin/questionManage/add-question.vue')
+      },
+      {
+        path: 'edit-question/:id',
+        name: 'editQuestion',
+        meta: {
+          title: '修改题目',
+          whiteList: [admins],
+          roles: ['edit-question']
+        },
+        component: () => import('@/views/admin/questionManage/add-question.vue')
+      }
+    ]
+  },
+  // 题目归类
+  {
+    path: 'question-classify',
+    meta: {
+      title: '题目归类',
+      whiteList: [admins],
+      roles: ['question-classify']
+    },
+    component: layout,
+    children: [
+      {
+        path: '',
+        name: 'question-classify',
+        meta: {
+          title: '题目归类',
+          whiteList: [admins],
+          roles: ['question-classify']
+        },
+        component: () => import('@/views/admin/questionManage/question-classify.vue')
+      },
+      {
+        path: 'add-classify',
+        name: 'add-classify',
+        meta: {
+          title: '新增归类',
+          whiteList: [admins],
+          roles: ['add-classify']
+        },
+        component: () => import('@/views/admin/questionManage/add-classify.vue')
+      },
+      {
+        path: 'edit-classify/:id',
+        name: 'edit-classify',
+        meta: {
+          title: '编辑归类',
+          whiteList: [admins],
+          roles: ['edit-classify']
+        },
+        component: () => import('@/views/admin/questionManage/add-classify.vue')
       }
     ]
   }

@@ -4,6 +4,7 @@ import config from './modules/config';
 import user from './modules/user';
 import menu from './modules/menu';
 import loadingServer from './modules/loading-server';
+import fixedData from './modules/fixedData';
 import getters from './getters';
 
 Vue.use(Vuex);
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     config,
     user,
     menu,
-    loadingServer
+    loadingServer,
+    fixedData
   }
 });
